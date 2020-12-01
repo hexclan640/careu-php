@@ -18,14 +18,14 @@ $time = strtotime($dbday);
 // $newformat = date('Y-m-d',$time);
 $dateOfBirth =  date('Y-m-d',$time);
 
-$mysql_qry = "select * from servicerequester where username like '$username' and status like '1' or '0' ";
+$mysql_qry = "select * from servicerequester where username like '$username' and (status = '1' or status ='0') ";
 
 $result = mysqli_query($conn,$mysql_qry);
 
 if (mysqli_num_rows($result)>0) {
 	echo "Already Used User_name please use another one";
 }else{
-	$mysql_qry = "select * from serviceRequester where  nicNumber like '$nicNumber' and status = '1'or'0'";
+	$mysql_qry = "select * from serviceRequester where  nicNumber like '$nicNumber' and (status = '1' or status ='0')";
 	$result = mysqli_query($conn,$mysql_qry);
 		if (mysqli_num_rows($result)>0) {
 			echo "Already Created Account using this ID";

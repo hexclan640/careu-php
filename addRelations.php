@@ -28,7 +28,7 @@ if ($number<3) {
 	// $relative1 = "Damish";
 	// $relative1Number = "0776560118";
 	$flag = 0;
-	if($relative1Number != NULL){
+	if($relative1Number != NULL && $relative1 !=NULL){
 		$mysql_query = "insert into relative (userId,name,phoneNumber) values ($userId,'$relative1','$relative1Number')";
 		$conn->query($mysql_query);
 		// if($conn->query($mysql_query) === TRUE){
@@ -38,41 +38,47 @@ if ($number<3) {
 		//     echo "Error :".$mysql_query."<br>".$conn->error;
 		// } 
 		$flag++;
+		echo "Sucessfully add the Relatives";
+
+		}else{
+
+		echo "username and phoneNumber cannot be empty";
+
+
 		}
 
-		$relative2 = $_POST['relative2'];
-		$relative2Number = $_POST['relative2Number'];
+		// $relative2 = $_POST['relative2'];
+		// $relative2Number = $_POST['relative2Number'];
 
-	if($relative2Number != NULL){
-		$mysql_query = "insert into relative (userId,name,phoneNumber) values ($userId,'$relative2','$relative2Number')";
-		$conn->query($mysql_query);
-		// if($conn->query($mysql_query) === TRUE){
-		//     echo "relative1";
-		// }
-		// else{
-		//     echo "Error :".$mysql_query."<br>".$conn->error;
-		// } 
-		$flag++;
-		}
+	// if($relative2Number != NULL){
+	// 	$mysql_query = "insert into relative (userId,name,phoneNumber) values ($userId,'$relative2','$relative2Number')";
+	// 	$conn->query($mysql_query);
+	// 	// if($conn->query($mysql_query) === TRUE){
+	// 	//     echo "relative1";
+	// 	// }
+	// 	// else{
+	// 	//     echo "Error :".$mysql_query."<br>".$conn->error;
+	// 	// } 
+	// 	$flag++;
+	// 	}
 
-		$relative3 = $_POST['relative3'];
-		$relative3Number = $_POST['relative3Number'];
+	// 	$relative3 = $_POST['relative3'];
+	// 	$relative3Number = $_POST['relative3Number'];
 
-	if($relative3Number != NULL){
-		$mysql_query = "insert into relative (userId,name,phoneNumber) values ($userId,'$relative3','$relative3Number')";
-		$conn->query($mysql_query);
-		// if($conn->query($mysql_query) === TRUE){
-		//     echo "relative1";
-		// }
-		// else{
-		//     echo "Error :".$mysql_query."<br>".$conn->error;
-		// }
-		$flag++; 
-		}
+	// if($relative3Number != NULL){
+	// 	$mysql_query = "insert into relative (userId,name,phoneNumber) values ($userId,'$relative3','$relative3Number')";
+	// 	$conn->query($mysql_query);
+	// 	// if($conn->query($mysql_query) === TRUE){
+	// 	//     echo "relative1";
+	// 	// }
+	// 	// else{
+	// 	//     echo "Error :".$mysql_query."<br>".$conn->error;
+	// 	// }
+	// 	$flag++; 
+	// 	}
 		
 
-	echo "Sucessfully add the Relatives";
-
+	
 }else {
 	echo "Allready You filled up all the relations";	
 
