@@ -2,7 +2,7 @@
 require "conn.php";
 
 $userName = $_POST['userName'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 $status  = "1";
 $mysql_qry = "select * from servicerequester where username like '$userName' and password like '$password' and status like '$status' ";
 $result = mysqli_query($conn,$mysql_qry);

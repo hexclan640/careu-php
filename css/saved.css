@@ -14,18 +14,24 @@ body {
     position: relative;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, 17%);
+    transform: translate(-50%, 45%);
 }
 
-#err {
+.pwdsaved {
     border: 1px solid;
     width: 50%;
     margin: 0px;
     padding: 5px 0px 5px 0px;
     background-repeat: no-repeat;
     background-position: 10px center;
-    color: #D8000C;
-    background-color: #FFBABA;
+    color:#3BB54A;
+    background-color: #DFF2BF;
+}
+
+.successimg{
+    width: 1.75rem;
+    height: auto;
+    margin-right: 0.5rem;
 }
 
 .hide {

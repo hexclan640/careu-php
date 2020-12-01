@@ -2,7 +2,7 @@
 require "conn.php";
 
 $username = $_POST['userName'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $nicNumber = $_POST['nicNumber'];
