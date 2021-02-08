@@ -1,7 +1,7 @@
 <?php
 require  "conn.php";
  $username = $_POST['username'];
- // $username="1599";
+ //$username="1599";
 
  $stmt = $conn->prepare(" SELECT servicerequester.userName ,servicerequester.firstName, servicerequester.lastName,servicerequester.email,servicerequester.phoneNumber,servicerequester.nicNumber ,relative.name as 'relative', relative.phoneNumber as 'relativeNumber'  FROM servicerequester INNER JOIN relative ON servicerequester.userId=relative.userId WHERE userName='$username' AND status ='1';");
  
@@ -83,5 +83,3 @@ if ($number<3) {
 	echo "Allready You filled up all the relations";	
 
 }
-
-?>
