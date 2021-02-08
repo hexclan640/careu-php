@@ -19,7 +19,7 @@ else{
 		$mysql_qry = "select * from servicerequester where userName like '$userName' and password like '$password' and status like '2' ";
 			$result = mysqli_query($conn,$mysql_qry);
 			if(mysqli_num_rows($result)>0){
-				echo "Please Reregister your informations are conflicts";
+				echo "Please Re-register your informations are conflicts";
 			}else{
 				echo "User login failed";
 			}

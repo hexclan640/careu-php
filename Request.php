@@ -9,6 +9,8 @@ $district = $_POST['district'];
 $policeStation = $_POST['policeStation'];
 $noOfPatients = $_POST['noOfPatients'];
 $description = $_POST['description'];
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
 
 
 // $toDate = strtotime($date);
@@ -38,8 +40,8 @@ if(mysqli_num_rows($result)>0){
 
 
         if($type == "ambulance"){
-        $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description) 
-                                values('$requestId','$date','$time','$district','$policeStation','$noOfPatients','$description')";
+        $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description,latitude,longitude) 
+                                values('$requestId','$date','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
         mysqli_query($conn,$ambulanceRequest);
         }
         echo 'Request send';
