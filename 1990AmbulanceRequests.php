@@ -1,6 +1,6 @@
 <?php
 require  "conn.php";
-
+ 
 $userName = $_GET['userName'];
 
 $userIdQuery = "select userId from servicerequester where userName like '$userName'";
