@@ -63,7 +63,7 @@
 				    echo 'Message could not be sent.';
 				    echo 'Mailer Error: ' . $mail->ErrorInfo;
 				} else {
-				    echo 'Message has been sent';
+				    echo 'Reset link has been sent to your email';
 				}
 
 
