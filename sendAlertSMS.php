@@ -1,28 +1,23 @@
 <?php 
 
-/*$host ='localhost';
-$user ='root';
-$pwd ='';
-$db ='contacts';
-
-$conn = mysqli_connect($host,$user,$pwd,$db);*/
-$userName = $_GET['userName'];
-echo $_GET['userName'];
-
 require  "conn.php";
-//$userName = $_GET['userName'];
-//$userId=$_GET['userId'];
+$userName = $_GET['userName'];
 
-
-/*if(!$conn){
-
-	die("Error in connection:" . mysqli_connect_error());
-}*/
 
 $response = array();
 
-//$sql_query ="select * from relative";
-$sql_query =" SELECT * FROM relative";
+
+
+//$sql_query ="SELECT * FROM relative WHERE userName like '$userName'";
+
+$sql_query1="SELECT userId FROM servicerequester WHERE userName like '$userName' and status like '1'";
+
+$result = mysqli_query($conn,$sql_query1);
+	$row=$result->fetch_assoc();
+	$userId = (int) $row['userId'];
+
+	$sql_query="SELECT * FROM relative WHERE userId like '$userId'";
+
 
 
 $result =mysqli_query($conn,$sql_query);
