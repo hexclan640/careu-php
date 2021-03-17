@@ -26,16 +26,20 @@ $userId = (int) $row['userId'];
 $requestId = (int)$requestId;
 
 $mysql_qry_fb = "SELECT `feedbackId` FROM `give` WHERE `userId`=$userId AND `requestId`=$requestId";
-$result = mysqli_query($conn, $mysql_qry_fb);
+$result_no_fb = mysqli_query($conn, $mysql_qry_fb);
 
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result_no_fb) > 0) {
+    
+    echo ("Success fully Updated the feedback");
 } else {
     if ($conn->query($mysql_qry) === TRUE) {
         $get_Id = mysqli_query($conn, $mysql_qry_current_Id);
         $fIdRow = $get_Id->fetch_assoc();
         $fId = (int)$fIdRow['Identity'];
-        echo ("Success fully saved the feedback= ");
-        
+        // echo ("Success fully saved the feedback");
+        $mysql_qry_give = "INSERT INTO `give`(`requestId`, `feedbackId`, `userId`) VALUES ($requestId,$fId,$userId)";
+        $result_give = mysqli_query($conn, $mysql_qry_give);
+        echo ("Success fully saved the feedback");
     } else {
         echo "Error :" . $mysql_qry . "<br>" . $conn->error;
         // echo ("Success fully Not saved the feedback");
