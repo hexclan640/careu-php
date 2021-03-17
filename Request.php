@@ -2,15 +2,32 @@
 require 'conn.php';
 
 $type = $_POST['type'];
-$userName = $_POST['userName'];
-$date = $_POST['date'];
-$time = $_POST['time'];
-$district = $_POST['district'];
-$policeStation = $_POST['policeStation'];
-$noOfPatients = $_POST['noOfPatients'];
-$description = $_POST['description'];
-$latitude = $_POST['latitude'];
-$longitude = $_POST['longitude'];
+
+if($type == "ambulance"){
+    $userName = $_POST['userName'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $district = $_POST['district'];
+    $policeStation = $_POST['policeStation'];
+    $noOfPatients = $_POST['noOfPatients'];
+    $description = $_POST['description'];
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
+}
+elseif($type == "police"){
+    $userName = $_POST['userName'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $district = $_POST['district'];
+    $policeStation = $_POST['policeStation'];
+    // $noOfPatients = $_POST['noOfPatients'];
+    $category = $_POST['category'];
+    $description = $_POST['description'];
+    // $latitude = $_POST['latitude'];
+    // $longitude = $_POST['longitude'];
+}
+
+
 
 
 // $toDate = strtotime($date);
@@ -39,11 +56,19 @@ if(mysqli_num_rows($result)>0){
         $requestType = (String)$amRow['type'];
 
 
-        if($type == "ambulance"){
-        $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description,latitude,longitude) 
-                                values('$requestId','$date','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
-        mysqli_query($conn,$ambulanceRequest);
+        if($requestType == "ambulance"){
+            $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description,latitude,longitude) 
+                                    values('$requestId','$date','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
+            mysqli_query($conn,$ambulanceRequest);
+            //echo 'Request send';
         }
+        elseif ($requestType == "police"){
+            $policeRequest = "insert into 119policerequest(requestId,date,time,district,policeStation,complainCategory,description)
+                                values('$requestId','$date','$time','$district','$policeStation','$category','$description')";
+            mysqli_query($conn,$policeRequest);
+            //echo 'Request send';
+        }
+
         echo 'Request send';
 
     }else{
