@@ -40,14 +40,31 @@ if ($type == "0") {
     $mysql_qry_fb = "SELECT `feedbackId` FROM `give` WHERE `userId`=$userId AND `requestId`=$requestId";
     $result_no_fb = mysqli_query($conn, $mysql_qry_fb);
     if (mysqli_num_rows($result_no_fb) != 0) {
+        $feedbackMassage = $_POST['feedbackMassage'];
+        $time = $_POST['time'];
+        $time = strtotime($time);
+        $time =  date('Y-m-d H:i:s', $time);
+        $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
 
-        echo ("Success fully Updated the feedback");
+        $result_fb = mysqli_query($conn, $mysql_qry_fb);
+        $row_fb = $result_fb->fetch_assoc();
+        $feedbackId = (int)$row_fb['feedbackId'];
+
+        $mysql_qry_update_fb = "UPDATE feedback SET feedbackTime='$time',comment='$feedbackMassage' WHERE feedbackId= $feedbackId";
+        if ($conn->query($mysql_qry_update_fb) === TRUE) {
+            echo ("Success fully Updated the feedback");
+        } else {
+            echo "Error :" . $mysql_qry_update_fb . "<br>" . $conn->error;
+        }
+
+        // mysqli_query($conn, $mysql_qry_update_fb);
     } else if (mysqli_num_rows($result_no_fb) == 0) {
 
         $feedbackMassage = $_POST['feedbackMassage'];
         $time = $_POST['time'];
         $time = strtotime($time);
-        $time =  date('Y-m-d H:i:s.u:00:00+05:30', $time);
+        $time =  date('Y-m-d H:i:s', $time);
+        $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
 
         $mysql_qry = "INSERT INTO `feedback`( `feedbackTime`, `comment`) VALUES ('$time','$feedbackMassage')";
         $mysql_qry_current_Id = "SELECT @@IDENTITY AS 'Identity'";
