@@ -34,6 +34,7 @@ if ($type == "0") {
     } else {
         $temp['feedbackId'] = "Strill not a feedback";
         $temp['feedbackComment'] = "Add A feedback";
+        $temp['ratings'] = (float)5.0;
         array_push($feedback, $temp);
         echo json_encode($feedback);
     }
@@ -45,7 +46,7 @@ if ($type == "0") {
         $time = $_POST['time'];
         $time = strtotime($time);
         $time =  date('Y-m-d H:i:s', $time);
-        $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
+        $time = date("Y/m/d H:i:s", strtotime("+4 hours +30 minutes", strtotime($time)));
 
         $rate = $_POST['rate'];
         $rate = floatval($rate);
@@ -66,7 +67,7 @@ if ($type == "0") {
         $time = $_POST['time'];
         $time = strtotime($time);
         $time =  date('Y-m-d H:i:s', $time);
-        $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
+        $time = date("Y/m/d H:i:s", strtotime("+4 hours +30 minutes", strtotime($time)));
         $rate = $_POST['rate'];
         $rate = (float)$rate;
         $mysql_qry = "INSERT INTO `feedback`( `feedbackTime`, `comment`,`ratings`) VALUES ('$time','$feedbackMassage',$rate)";
