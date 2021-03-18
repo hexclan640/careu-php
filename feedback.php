@@ -17,7 +17,28 @@ $requestId = (int)$requestId;
 
 
 if ($type == "0") {
-    echo ("Hello2");
+    $mysql_qry_fb = "SELECT `feedbackId` FROM `give` WHERE `userId`=$userId AND `requestId`=$requestId";
+    $result_no_fb = mysqli_query($conn, $mysql_qry_fb);
+    $feedback =  array();
+    $temp = array();
+    if (mysqli_num_rows($result_no_fb) != 0) {
+        $result_fb = mysqli_query($conn, $mysql_qry_fb);
+        $row_fb = $result_fb->fetch_assoc();
+        $feedbackId = (int)$row_fb['feedbackId'];
+        $state = $conn->prepare("SELECT * FROM `careu`.`feedback` WHERE `feedbackId` = $feedbackId");
+        $state->execute();
+        $state->bind_result($feedbackId, $feedbacktime, $feedbackComment);
+        $state->fetch();
+        $temp['feedbackId'] = $feedbackId;
+        $temp['feedbackComment'] = $feedbackComment;
+        array_push($feedback, $temp);
+        echo json_encode($feedback);
+    } else {
+        $temp['feedbackId'] = "Strill not a feedback";
+        $temp['feedbackComment'] = "Add A feedback";
+        array_push($feedback, $temp);
+        echo json_encode($feedback);
+    }
 } else {
     $mysql_qry_fb = "SELECT `feedbackId` FROM `give` WHERE `userId`=$userId AND `requestId`=$requestId";
     $result_no_fb = mysqli_query($conn, $mysql_qry_fb);
