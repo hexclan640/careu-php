@@ -56,8 +56,6 @@ if ($type == "0") {
         } else {
             echo "Error :" . $mysql_qry_update_fb . "<br>" . $conn->error;
         }
-
-        // mysqli_query($conn, $mysql_qry_update_fb);
     } else if (mysqli_num_rows($result_no_fb) == 0) {
 
         $feedbackMassage = $_POST['feedbackMassage'];
