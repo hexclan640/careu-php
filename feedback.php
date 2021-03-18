@@ -56,13 +56,11 @@ if ($type == "0") {
             $get_Id = mysqli_query($conn, $mysql_qry_current_Id);
             $fIdRow = $get_Id->fetch_assoc();
             $fId = (int)$fIdRow['Identity'];
-            // echo ("Success fully saved the feedback");
             $mysql_qry_give = "INSERT INTO `give`(`requestId`, `feedbackId`, `userId`) VALUES ($requestId,$fId,$userId)";
             $result_give = mysqli_query($conn, $mysql_qry_give);
             echo ("Successfully saved the feedback");
         } else {
             echo "Error :" . $mysql_qry . "<br>" . $conn->error;
-            // echo ("Success fully Not saved the feedback");
         }
     }
 }
