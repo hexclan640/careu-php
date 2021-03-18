@@ -4,8 +4,6 @@ require  "conn.php";
 $userName = $_GET['userName'];
 $type = $_GET['type'];
 $requestId = $_GET['requestID'];
-// echo ("Hello");
-
 $lastID;
 
 $mysql_qry_Id = "select userId from servicerequester where username like '$userName' and status like '1'";
@@ -13,7 +11,6 @@ $result = mysqli_query($conn, $mysql_qry_Id);
 $row = $result->fetch_assoc();
 $userId = (int) $row['userId'];
 $requestId = (int)$requestId;
-// echo ($requestId);
 
 
 if ($type == "0") {
