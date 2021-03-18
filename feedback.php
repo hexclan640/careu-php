@@ -24,10 +24,11 @@ if ($type == "0") {
         $feedbackId = (int)$row_fb['feedbackId'];
         $state = $conn->prepare("SELECT * FROM `careu`.`feedback` WHERE `feedbackId` = $feedbackId");
         $state->execute();
-        $state->bind_result($feedbackId, $feedbacktime, $feedbackComment);
+        $state->bind_result($feedbackId, $feedbacktime, $feedbackComment, $ratings);
         $state->fetch();
         $temp['feedbackId'] = $feedbackId;
         $temp['feedbackComment'] = $feedbackComment;
+        $temp['ratings'] = $ratings;
         array_push($feedback, $temp);
         echo json_encode($feedback);
     } else {
@@ -46,11 +47,14 @@ if ($type == "0") {
         $time =  date('Y-m-d H:i:s', $time);
         $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
 
+        $rate = $_POST['rate'];
+        $rate = floatval($rate);
+
         $result_fb = mysqli_query($conn, $mysql_qry_fb);
         $row_fb = $result_fb->fetch_assoc();
         $feedbackId = (int)$row_fb['feedbackId'];
 
-        $mysql_qry_update_fb = "UPDATE feedback SET feedbackTime='$time',comment='$feedbackMassage' WHERE feedbackId= $feedbackId";
+        $mysql_qry_update_fb = "UPDATE feedback SET feedbackTime='$time',comment='$feedbackMassage',ratings=$rate WHERE feedbackId= $feedbackId";
         if ($conn->query($mysql_qry_update_fb) === TRUE) {
             echo ("Success fully Updated the feedback");
         } else {
@@ -63,8 +67,9 @@ if ($type == "0") {
         $time = strtotime($time);
         $time =  date('Y-m-d H:i:s', $time);
         $time = date("Y/m/d H:i:s", strtotime("+5 hours"));
-
-        $mysql_qry = "INSERT INTO `feedback`( `feedbackTime`, `comment`) VALUES ('$time','$feedbackMassage')";
+        $rate = $_POST['rate'];
+        $rate = (float)$rate;
+        $mysql_qry = "INSERT INTO `feedback`( `feedbackTime`, `comment`,`ratings`) VALUES ('$time','$feedbackMassage',$rate)";
         $mysql_qry_current_Id = "SELECT @@IDENTITY AS 'Identity'";
 
         if ($conn->query($mysql_qry) === TRUE) {
