@@ -1,7 +1,7 @@
 <?php
 require  "conn.php";
 
-$qry="select * from instruction1";
+$qry="select * from instruction6";
 
 $raw=mysqli_query($conn,$qry);
 

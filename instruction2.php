@@ -1,6 +1,5 @@
 <?php
-$conn=mysqli_connect("localhost","root","");
-mysqli_select_db($conn,"careu");
+require  "conn.php";
 
 $qry="select * from instruction2";
 
