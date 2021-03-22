@@ -14,9 +14,13 @@ $phoneNumber = $_POST['phoneNumber'];
 $gender = $_POST['gender'];
 
 $dbday = $_POST['dateOfBirth'];
+$cdate = $_POST['date'];
+$ctime = $_POST['time'];
 $time = strtotime($dbday);
+$date = strtotime($cdate);
 // $newformat = date('Y-m-d',$time);
 $dateOfBirth =  date('Y-m-d',$time);
+$currentDate = date('Y-m-d',$date);
 
 $mysql_qry = "select * from servicerequester where username like '$username' and (status = '1' or status ='0') ";
 
@@ -30,8 +34,8 @@ if (mysqli_num_rows($result)>0) {
 		if (mysqli_num_rows($result)>0) {
 			echo "Already Created Account using this ID";
 		}else{
-			$mysql_qry = "insert into serviceRequester (userName,password,firstName,lastName,nicNumber,gender,email,address,dateOfBirth,phoneNumber)
-               values ('$username','$password','$firstName','$lastName','$nicNumber','$gender','$email','$address','$dateOfBirth','$phoneNumber')";
+			$mysql_qry = "insert into serviceRequester (userName,password,firstName,lastName,nicNumber,gender,email,address,dateOfBirth,phoneNumber,date,time)
+               values ('$username','$password','$firstName','$lastName','$nicNumber','$gender','$email','$address','$dateOfBirth','$phoneNumber','$currentDate','$ctime')";
                		// mysqli_query($conn,$mysql_qry);
 
 					if($conn->query($mysql_qry) === TRUE){
