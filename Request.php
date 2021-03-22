@@ -27,7 +27,8 @@ elseif($type == "police"){
     // $longitude = $_POST['longitude'];
 }
 
-
+$cDate = strtotime($date);
+$currentDate = date('Y-m-d',$cDate);
 
 
 // $toDate = strtotime($date);
@@ -58,13 +59,13 @@ if(mysqli_num_rows($result)>0){
 
         if($requestType == "ambulance"){
             $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description,latitude,longitude) 
-                                    values('$requestId','$date','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
+                                    values('$requestId','$currentDate','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
             mysqli_query($conn,$ambulanceRequest);
             //echo 'Request send';
         }
         elseif ($requestType == "police"){
             $policeRequest = "insert into 119policerequest(requestId,date,time,district,policeStation,complainCategory,description)
-                                values('$requestId','$date','$time','$district','$policeStation','$category','$description')";
+                                values('$requestId','$c urrentDate','$time','$district','$policeStation','$category','$description')";
             mysqli_query($conn,$policeRequest);
             //echo 'Request send';
         }

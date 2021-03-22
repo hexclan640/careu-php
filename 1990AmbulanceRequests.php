@@ -12,11 +12,11 @@ $userId = (int)$row['userId'];
 // $qry="SELECT request.date ,request.time , request.type , 1990ambulancerequest.numberOfPatients ,description FROM request INNER JOIN 1990ambulancerequest ON request.requestId = 1990ambulancerequest.requestId WHERE request.userId = '$userId'";
 
 
-$stmt = $conn->prepare(" SELECT request.requestId,request.date ,request.time , request.type , 1990ambulancerequest.numberOfPatients ,description FROM request INNER JOIN 1990ambulancerequest ON request.requestId = 1990ambulancerequest.requestId WHERE request.userId = '$userId';");
+$stmt = $conn->prepare(" SELECT request.requestId,request.date ,request.time , request.type , 1990ambulancerequest.numberOfPatients ,1990ambulancerequest.policeStation,description FROM request INNER JOIN 1990ambulancerequest ON request.requestId = 1990ambulancerequest.requestId WHERE request.userId = '$userId';");
  $stmt->execute();
 $product = array();
 
-$stmt->bind_result($requestId,$date,$time,$type,$numberOfPatients,$description);
+$stmt->bind_result($requestId,$date,$time,$type,$numberOfPatients,$policeStation,$description);
 
 if ($stmt->fetch()) {	
 
@@ -29,7 +29,8 @@ if ($stmt->fetch()) {
 		 	$temp['date'] = $date;
 		 	$temp['time'] = $time;
 		 	$temp['type'] = $type;
-		 	$temp['numberOfPatients'] = $numberOfPatients;
+		 	$temp['policeStation'] = $policeStation;
+			$temp['numberOfPatients'] = $numberOfPatients;
 		 	$temp['description'] = $description;
 		 	array_push($product, $temp);
 		 }
