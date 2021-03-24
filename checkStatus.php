@@ -10,7 +10,7 @@ $userId = (int)$row['userId'];
 
 
 
-$mysql_query_get_flag = "SELECT 1990ambulancerequest.requestId,1990ambulancerequest.flag FROM request INNER JOIN 1990ambulancerequest ON request.requestId= 1990ambulancerequest.requestId WHERE request.userId=78 ORDER BY 1990ambulancerequest.requestId DESC LIMIT 1";
+$mysql_query_get_flag = "SELECT 1990ambulancerequest.requestId,1990ambulancerequest.flag FROM request INNER JOIN 1990ambulancerequest ON request.requestId= 1990ambulancerequest.requestId WHERE request.userId=$userId ORDER BY 1990ambulancerequest.requestId DESC LIMIT 1";
 $result = mysqli_query($conn, $mysql_query_get_flag);
 $row = $result->fetch_assoc();
 $flag = $row['flag'];
