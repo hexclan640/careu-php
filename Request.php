@@ -65,7 +65,7 @@ if(mysqli_num_rows($result)>0){
         }
         elseif ($requestType == "police"){
             $policeRequest = "insert into 119policerequest(requestId,date,time,district,policeStation,complainCategory,description)
-                                values('$requestId','$c urrentDate','$time','$district','$policeStation','$category','$description')";
+                                values('$requestId','$currentDate','$time','$district','$policeStation','$category','$description')";
             mysqli_query($conn,$policeRequest);
             //echo 'Request send';
         }
