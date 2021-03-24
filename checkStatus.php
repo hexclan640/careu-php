@@ -19,7 +19,9 @@ $requestId = $row['requestId'];
 if ($flagget == "0") {
     if ($flag == 1) {
         echo "okey";
-    } else {
+    } else if ($flag == 2) {
+        echo "Desline";
+    } else if ($flag == 3) {
         echo "Desline or time out";
     }
 } else {
