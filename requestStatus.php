@@ -20,15 +20,13 @@ if ($stmt->fetch()) {
 	$stmt->execute();
 
 	while ($stmt->fetch()) {
+		
+		$temp = array();
+	 	$temp['requestId'] = $requestId;
+	 	array_push($product, $temp);
+	}
 
-		 	$temp = array();
-		 	$temp['requestId'] = $requestId;
-		 	array_push($product, $temp);
-		 }
-
-
-
-		echo json_encode($product);
+	echo json_encode($product);
 
 	# code...
 }else{
