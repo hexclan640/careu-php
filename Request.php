@@ -61,16 +61,16 @@ if(mysqli_num_rows($result)>0){
             $ambulanceRequest = "insert into 1990ambulancerequest(requestId,date,time,district,policeStation,numberOfPatients,description,latitude,longitude) 
                                     values('$requestId','$currentDate','$time','$district','$policeStation','$noOfPatients','$description','$latitude','$longitude')";
             mysqli_query($conn,$ambulanceRequest);
-            //echo 'Request send';
+            echo 'Request send';
         }
         elseif ($requestType == "police"){
             $policeRequest = "insert into 119policerequest(requestId,date,time,district,policeStation,complainCategory,description)
                                 values('$requestId','$currentDate','$time','$district','$policeStation','$category','$description')";
             mysqli_query($conn,$policeRequest);
-            //echo 'Request send';
+            echo '119 Request send';
         }
 
-        echo 'Request send';
+        // echo 'Request send';
 
     }else{
         echo 'can not get request Id';
