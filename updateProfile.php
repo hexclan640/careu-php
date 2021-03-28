@@ -13,7 +13,7 @@ $row = $result->fetch_assoc();
 $userId = (int) $row['userId'];
 
 
-$mysql_query = "UPDATE servicerequester SET firstName='$firstName, lastName='$lastName',email='$email',phoneNumber='$phoneNumber' WHERE userId = $userId";
+$mysql_query = "UPDATE servicerequester SET firstName='$firstName', lastName='$lastName',email='$email',phoneNumber='$phoneNumber' WHERE userId = $userId";
 
 if (mysqli_query($conn, $mysql_query)) {
     echo "Record updated";
