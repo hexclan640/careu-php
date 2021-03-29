@@ -33,7 +33,8 @@ if($conn){
 
     $now = DateTime::createFromFormat('U.u',microtime(true));
     $eviName = $now->format('YmdHisu');
-    $sql = "insert into photo(name,time,date,category,requestId) values ('$eviName','$time','$date','$category','$reqId')";
+    $eviNamejpg = $eviName.".jpg";
+    $sql = "insert into photo(name,time,date,category,requestId) values ('$eviNamejpg','$time','$date','$category','$reqId')";
     $upload_path = "$reqId/$eviName.jpg";
     if(mysqli_query($conn,$sql)){
         // mysqli_query($conn,$sql);
